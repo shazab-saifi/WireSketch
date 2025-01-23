@@ -1,27 +1,25 @@
 import { SignUpSchema } from "@repo/common/types";
 import { Request, Response } from "express";
 import { prisma } from "@repo/db/singleton"
+import bcrypt from "bcrypt"
 
 export async function signup(req: Request, res: Response) {
     const parsedData = SignUpSchema.safeParse(req.body);
 
     if (!parsedData.success) {
         res.json({
-            msg: "Incorrect Inputs!"
+            msg: "Incorrect Inputs!" + parsedData.error
         });
         return;
     }
 
     try {
-        const email = parsedData.data.email;
-        const password = parsedData.data.password;
-        const name = parsedData.data.name;
-
+        const hashedPassword = await bcrypt.hash(parsedData.data.password, 10);
         await prisma.user.create({
             data: {
-                email,
-                password,
-                name
+                email: parsedData.data.email,
+                password: parsedData.data.password,
+                name: parsedData.data.name
             }
         });
 
