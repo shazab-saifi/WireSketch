@@ -26,7 +26,8 @@ export default function authMiddleware(req: Request, res: Response, next: NextFu
         req.userId = decoded.id;
         next();
     } catch (error) {
-        return res.status(403).json({
+        console.log(error);
+        res.status(403).json({
             err: "Invalid token!"
         });
     }
