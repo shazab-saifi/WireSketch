@@ -13,6 +13,7 @@ export async function signin(req: Request, res: Response) {
         res.status(400).json({
             msg: "Incorrect Inputs!"
         });
+        return;
     }
 
     try {
@@ -28,7 +29,7 @@ export async function signin(req: Request, res: Response) {
             if (userPassword) {
                 const token = jwt.sign({
                     id: user.id
-                }, process.env.JWT_SECRET!);
+                }, process.env.JWT_SECRET || "DEMO_SECRET");
 
                 res.json({
                     token
