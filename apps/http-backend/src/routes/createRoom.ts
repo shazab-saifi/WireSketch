@@ -14,13 +14,18 @@ export async function createRoom(req: Request, res: Response) {
 
     try {
         const adminId = req.userId!;
+
         if (parsedData.data?.name) {
-            await prisma.room.create({
+            const room = await prisma.room.create({
                 data: {
                     adminId,
                     slug: parsedData.data.name
                 }
-            })
+            });
+
+            res.json({
+                roomId: room.id
+            });
         }
     } catch (error) {
         console.error(error);

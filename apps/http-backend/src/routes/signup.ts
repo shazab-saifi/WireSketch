@@ -18,7 +18,7 @@ export async function signup(req: Request, res: Response) {
         await prisma.user.create({
             data: {
                 email: parsedData.data.email,
-                password: parsedData.data.password,
+                password: hashedPassword,
                 name: parsedData.data.name
             }
         });
