@@ -4,7 +4,12 @@ import { Request, Response } from "express";
 export async function room(req: Request, res:Response) {
     try {
         const roomId = Number(req.params.roomId);
-        console.log(roomId);
+        
+        if (!roomId) {
+            res.status(404).json({
+                err: "Couldn't find the roomId!"
+            })
+        }
 
         const shapes = prisma.chat.findMany({
             where: {
@@ -15,6 +20,13 @@ export async function room(req: Request, res:Response) {
             },
             take: 100
         });
+
+        if (!shapes) {
+            res.status(403).json({
+                err: "This room doesn't exit!"
+            });
+            return;
+        }
 
         res.json({
             shapes
