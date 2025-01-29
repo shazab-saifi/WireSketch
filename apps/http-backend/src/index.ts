@@ -13,7 +13,7 @@ app.use(express.json());
 router.post("/signup", signup);
 router.post("/signin", signin);
 router.post("/create-room", authMiddleware, createRoom);
-router.get("/room:roomId", room);
+router.get("/room/:roomId", room);
 
 app.use("/", router);
 

@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import * as dotenv from "dotenv";
 dotenv.config();
 
-const wss = new WebSocketServer({ port: 8080 });
+const wss = new WebSocketServer({ port: 8070 });
 console.log(process.env.JWT_SECRET)
 
 function checkUser(token: string): string | null {
@@ -14,7 +14,7 @@ function checkUser(token: string): string | null {
         if (typeof decoded === "string") {
             return null
         }
-        
+
         if (!decoded || !decoded.userId) {
             return null;
         }
@@ -26,7 +26,7 @@ function checkUser(token: string): string | null {
     }
 }
 
-interface User{
+interface User {
     userId: string;
     rooms: string[]
     ws: WebSocket
@@ -61,7 +61,7 @@ wss.on("connection", async (ws, req) => {
 
             if (typeof data !== "string") {
                 parsedData = JSON.parse(data.toString());
-            }else{
+            } else {
                 parsedData = JSON.parse(data);
             }
 
@@ -101,8 +101,9 @@ wss.on("connection", async (ws, req) => {
                 })
             }
         });
-        
+
     } catch (error) {
-        console.error(error);
+        ws.close();
+        console.log(error);
     }
 });
