@@ -8,8 +8,12 @@
     "dev": "nodemon dist/index.js"
   },
   "dependencies": {
+    "@repo/db": "workspace:*",
     "@repo/typescript-config": "workspace:*",
+    "@types/jsonwebtoken": "^9.0.7",
     "@types/ws": "^8.5.13",
+    "dotenv": "^16.4.7",
+    "jsonwebtoken": "^9.0.2",
     "ws": "^8.18.0"
   },
   "keywords": [],

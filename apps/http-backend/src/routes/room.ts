@@ -8,7 +8,7 @@ export async function room(req: Request, res:Response) {
         if (!roomId) {
             res.status(404).json({
                 err: "Couldn't find the roomId!"
-            })
+            });
         }
 
         const shapes = prisma.chat.findMany({
