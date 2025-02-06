@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import * as dotenv from "dotenv";
 dotenv.config();
 
-const wss = new WebSocketServer({ port: 8070 });
+const wss = new WebSocketServer({ port: 8080 });
 console.log(process.env.JWT_SECRET)
 
 function checkUser(token: string): string | null {
@@ -12,7 +12,7 @@ function checkUser(token: string): string | null {
         const decoded = jwt.verify(token, process.env.JWT_SECRET || "DEMO_SECRET");
 
         if (typeof decoded === "string") {
-            return null
+            return null;
         }
 
         if (!decoded || !decoded.userId) {
