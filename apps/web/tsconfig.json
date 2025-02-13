@@ -5,7 +5,14 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "baseUrl": "./",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@public/*": ["public/*"],
+      "@lib/*": ["lib/*"],
+      "@icons/*": ["icons/*"]
+    }
   },
   "include": [
     "**/*.ts",
