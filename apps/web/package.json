@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "axios": "^1.7.9",
+    "motion": "^12.4.5",
     "next": "^15.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

@@ -47,10 +47,10 @@ const Navbar = () => {
                     <Image src={Logo} width={152} height={180} alt="logo" />
                     <Button icon={<Menu />} className="p-2 sm:hidden" onClick={() => setNavmenuOpen(prev => !prev)} />
                     <div className="lg:space-x-[3.125rem] md:space-x-[1.875rem] sm:space-x-[1.375rem] lg:text-[14px] sm:text-[10px] font-semibold text-white sm:flex justify-center items-center hidden">
-                        <span className="cursor-pointer">About Us</span>
-                        <span className="cursor-pointer">Contact Us</span>
-                        <span className="cursor-pointer">Pricing</span>
-                        <span className="cursor-pointer">Enterprise</span>
+                        <span className="cursor-pointer hover:opacity-70">About Us</span>
+                        <span className="cursor-pointer hover:opacity-70">Contact Us</span>
+                        <span className="cursor-pointer hover:opacity-70">Pricing</span>
+                        <span className="cursor-pointer hover:opacity-70">Enterprise</span>
                     </div>
                     <div className="hidden space-x-7 items-center sm:flex">
                         <Link href="https://github.com/shazab-saifi/WireSketch.git">
@@ -61,7 +61,7 @@ const Navbar = () => {
                 </div>
             </div>}
             {/* Navmenu for mobile */}
-            {navMenuOpen && <div className="w-full h-screen sm:hidden p-4 absolute top-0">
+            {navMenuOpen && <div className="w-full h-screen sm:hidden p-4 absolute top-0 bg-[#1A1A19]">
                 <div className="flex justify-between items-center">
                     <Image src={Logo} width={152} height={180} alt="logo" />
                     <Button icon={<CrossIcon />} className="bg-transparent p-2" onClick={() => setNavmenuOpen(prev => !prev)} />
