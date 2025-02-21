@@ -37,7 +37,7 @@ const ReviewSection = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="text-white font-bold text-[28px] lg:text-5xl text-center leading-9">
+        className="text-white font-bold text-[28px] lg:text-[42px] xl:text-5xl text-center leading-9">
         Reviews from our <span className="text-[#859F3D]">USERS</span>
       </motion.h1>
       <div className="flex flex-col items-center lg:flex-row lg:flex-wrap lg:justify-center lg:gap-12">

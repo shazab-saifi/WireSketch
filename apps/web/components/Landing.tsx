@@ -1,9 +1,9 @@
 "use client"
 
-import dynamic from "next/dynamic";
 import Navbar from "./Navbar";
-const HeroSection = dynamic(() => import("@components/HeroSection"));
-const ReviewSection = dynamic(() => import("@components/ReviewSection"));
+import HeroSection from "./HeroSection";
+import ReviewSection from "./ReviewSection";
+import AISection from "./AISection";
 
 export default function Landing() {
   return (
@@ -11,6 +11,7 @@ export default function Landing() {
       <Navbar />
       <HeroSection />
       <ReviewSection />
+      <AISection />
     </div>
   )
 }

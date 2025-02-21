@@ -6,20 +6,27 @@ import { scrollVariants } from "@lib/MotionVarients";
 
 const HeroSection = () => {
   const headingClass = "font-bold text-center leading-10 text-[32px] lg:text-[42px] xl:text-[64px] md:leading-14 xl:leading-20 md:text-5xl lg:leading-11 2xl:text-7xl";
-  const subheadingClass = "text-center my-3 sm:my-4 text-[14px] xl:text-[22px]";
+  const subheadingClass = "text-center my-4 sm:my-5 text-[14px] xl:text-[22px]";
   const breakClasses = "hidden sm:block";
 
   return (
     <div className="w-full px-4 mt-16 text-white flex flex-col lg:flex-row lg:px-20 items-center lg:justify-evenly">
       {/* Desktop Image */}
-      <Image
-        className="sm:w-[400px] xl:w-[800px] hidden lg:block"
-        src={woman}
-        alt="woman"
-      />
+      <motion.div
+        variants={scrollVariants.variant1}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
+        <Image
+          className="sm:w-[400px] xl:w-[800px] hidden lg:block"
+          src={woman}
+          alt="woman"
+        />
+      </motion.div>
       <div>
         <motion.h1
-          variants={scrollVariants.variant1}
+          variants={scrollVariants.variant2}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -30,7 +37,7 @@ const HeroSection = () => {
           for Creative Ideas
         </motion.h1>
         <motion.p
-          variants={scrollVariants.variant2}
+          variants={scrollVariants.variant3}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -44,7 +51,7 @@ const HeroSection = () => {
           with ease—just like your favorite canvas tool.
         </motion.p>
         <motion.div
-          variants={scrollVariants.variant3}
+          variants={scrollVariants.variant4}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -53,11 +60,18 @@ const HeroSection = () => {
         </motion.div>
       </div>
       {/* Mobile Image */}
-      <Image
-        className="sm:w-[400px] lg:hidden"
-        src={woman}
-        alt="woman"
-      />
+      <motion.div
+        variants={scrollVariants.variant4}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
+        <Image
+          className="sm:w-[400px] lg:hidden"
+          src={woman}
+          alt="woman"
+        />
+      </motion.div>
     </div>
   );
 };
