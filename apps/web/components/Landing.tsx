@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import HeroSection from "./HeroSection";
 import ReviewSection from "./ReviewSection";
 import AISection from "./AISection";
+import OfferSection from "./OfferSection";
 
 export default function Landing() {
   return (
@@ -12,6 +13,7 @@ export default function Landing() {
       <HeroSection />
       <ReviewSection />
       <AISection />
+      <OfferSection />
     </div>
   )
 }

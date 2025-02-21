@@ -5,7 +5,7 @@ import { scrollVariants } from '@lib/MotionVarients'
 
 const AISection = () => {
     return (
-        <div className='mt-18 flex flex-col items-center justify-center xl:flex-row lg:px-20'>
+        <div className='mt-18 flex flex-col items-center justify-center xl:flex-row lg:px-20 px-4'>
             <div className='text-white text-center'>
                 <motion.h1
                     variants={scrollVariants.variant1}
