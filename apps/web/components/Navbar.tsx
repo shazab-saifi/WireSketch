@@ -1,5 +1,5 @@
 "use client"
-import Logo from "@public/Logo.png"
+import Logo from "@public/Logo.svg"
 import Image from "next/image"
 import GithubIcon from "@icons/GithubIcon";
 import Link from "next/link";
