@@ -1,12 +1,5 @@
-import HeroSection from "@components/HeroSection";
-import Navbar from "@components/Navbar";
-
+import Landing from "@components/LandingPage"
 
 export default function Home() {
-  return (
-    <div className="bg-[#1A1A19] w-full h-screen">
-      <Navbar/>
-      <HeroSection />
-    </div>
-  )
+  return <Landing />
 }
