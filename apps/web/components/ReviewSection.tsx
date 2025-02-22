@@ -50,7 +50,7 @@ const ReviewSection = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="flex flex-col items-center">
+              className="flex flex-col items-center hover:-translate-y-3 transition-transform">
               <Image
                 src={data.avatar}
                 width={80}
@@ -72,11 +72,11 @@ const ReviewSection = () => {
           {cardsData.slice(2, 4).map((data) => (
             <motion.div
               key={data.email}
-              variants={scrollVariants.variant3}
+              variants={scrollVariants.variant2}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="flex flex-col items-center">
+              className="flex flex-col items-center hover:-translate-y-3 transition-transform">
               <Image
                 src={data.avatar}
                 width={80}
