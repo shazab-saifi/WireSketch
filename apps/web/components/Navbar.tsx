@@ -16,7 +16,6 @@ const Navbar = () => {
 
     return (
         <nav className="w-full md:px-16 lg:px-20 px-4 py-4 fixed top-0 left-0 z-40 bg-[#1A1A19] border-b-0">
-            {/* Always render navbar */}
             <div className="flex justify-between items-center">
                 <Image src={Logo} width={152} height={180} alt="logo" />
                 <Button 

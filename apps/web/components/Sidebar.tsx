@@ -40,18 +40,17 @@ const Sidebar = ({ navMenuOpen, setNavmenuOpen }: SidebarProps) => {
             role="dialog"
             aria-modal="true"
             aria-label="Main menu"
-            className={`fixed inset-0 w-full h-screen sm:hidden p-4 bg-[#1A1A19] z-50 transition-all duration-300 transform ${
-                navMenuOpen 
-                    ? "translate-y-0 opacity-100" 
+            className={`fixed inset-0 w-full h-screen sm:hidden p-4 bg-[#1A1A19] z-50 transition-all duration-300 transform ${navMenuOpen
+                    ? "translate-y-0 opacity-100"
                     : "-translate-y-full opacity-0 pointer-events-none"
-            }`}
+                }`}
         >
             <div className="flex justify-between items-center">
-                <Image 
-                    src={Logo} 
-                    width={152} 
-                    height={180} 
-                    alt="Company Logo" 
+                <Image
+                    src={Logo}
+                    width={152}
+                    height={180}
+                    alt="Company Logo"
                 />
                 <Button
                     icon={<CrossIcon aria-hidden="true" />}
@@ -76,11 +75,15 @@ const Sidebar = ({ navMenuOpen, setNavmenuOpen }: SidebarProps) => {
                     </button>
                 ))}
             </nav>
-            <div className="mt-12 w-full flex justify-center">
-                <Button 
-                    text="Sign Up" 
+            <div className="flex justify-center mt-16 space-x-6" >
+                <Button
+                    text="Sign Up"
                     onClick={() => router.push("/signup")}
-                    className="w-full max-w-[200px]"
+                />
+                <Button
+                    text="Log In"
+                    onClick={() => router.push("/login")}
+                    className="bg-transparent ring-4 ring-[#31511E]"
                 />
             </div>
         </div>
