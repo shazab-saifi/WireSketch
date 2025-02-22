@@ -10,8 +10,7 @@ const HeroSection = () => {
   const breakClasses = "hidden sm:block";
 
   return (
-    <div className="w-full px-4 mt-16 text-white flex flex-col lg:flex-row lg:px-20 items-center lg:justify-evenly">
-      {/* Desktop Image */}
+    <div className="w-full px-4 mt-16 pt-16 text-white flex flex-col lg:flex-row lg:px-20 items-center lg:justify-evenly">
       <motion.div
         variants={scrollVariants.variant1}
         initial="hidden"
@@ -59,7 +58,6 @@ const HeroSection = () => {
           <Button text="Try now for free" />
         </motion.div>
       </div>
-      {/* Mobile Image */}
       <motion.div
         variants={scrollVariants.variant4}
         initial="hidden"
