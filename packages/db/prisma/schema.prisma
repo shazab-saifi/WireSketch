@@ -8,11 +8,13 @@ datasource db {
 }
 
 model User {
-  id       String @id @default(uuid()) 
-  email    String @unique
-  password String
+  id       String  @id @default(uuid()) 
+  email    String  @unique
+  password String?
   name     String
   photo    String?
+  googleId String? @unique
+  authtype String  @default("credentails")
   chats    Chat[]
   rooms    Room[]
 }

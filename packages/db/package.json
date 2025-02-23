@@ -9,12 +9,14 @@
     "./singleton": "./src/singleton.ts"
   },
   "dependencies": {
-    "@prisma/client": "6.2.1",
-    "@repo/typescript-config": "workspace:*",
-    "prisma": "^6.2.1"
+    "@prisma/client": "6.4.1",
+    "@repo/typescript-config": "workspace:*"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "prisma": "^6.4.1"
+  }
 }

@@ -9,7 +9,7 @@ interface JwtPayload {
 }
 
 export default function authMiddleware(req: Request, res: Response, next: NextFunction) {
-    const token = req.cookies.token;
+    const token = req.cookies.jwt;
 
     if (!token) {
         res.status(403).json({

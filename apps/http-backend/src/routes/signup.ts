@@ -19,7 +19,8 @@ export async function signup(req: Request, res: Response) {
             data: {
                 email: parsedData.data.email,
                 password: hashedPassword,
-                name: parsedData.data.name
+                name: parsedData.data.name,
+                authtype: "crednetials"
             }
         });
 

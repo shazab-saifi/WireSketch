@@ -18,7 +18,7 @@ export async function signin(req: Request, res: Response) {
     }
 
     try {
-        const user = await prisma.user.findFirst({
+        const user = await prisma.user.findUnique({
             where: {
                 email: parsedData.data?.email
             }
@@ -37,17 +37,15 @@ export async function signin(req: Request, res: Response) {
             if (userPassword) {
                 const token = jwt.sign(
                     { id: user.id },
-                    process.env.JWT_SECRET || "DEMO_SECRET"
+                    process.env.JWT_SECRET || "DEMO_SECRET",
+                    {expiresIn: "7d"}
                 );
-
-                // res.json({
-                //     token
-                // });
-                res.cookie("token", token, {
+                
+                res.cookie("jwt", token, {
                     httpOnly: true,
                     secure: process.env.NODE_ENV === "production",
                     sameSite: true,
-                    maxAge: 24 * 60 * 60 * 1000
+                    maxAge: 7 * 24 * 60 * 60 * 1000
                 });
 
                 console.log(res.getHeaders());
