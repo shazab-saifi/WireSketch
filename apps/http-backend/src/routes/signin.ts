@@ -43,8 +43,18 @@ export async function signin(req: Request, res: Response) {
                     process.env.JWT_SECRET || "DEMO_SECRET"
                 );
 
+                // res.json({
+                //     token
+                // });
+                res.cookie("token", token, {
+                    httpOnly: true,
+                    secure: process.env.NODE_ENV === "production",
+                    sameSite: true,
+                    maxAge: 24 * 60 * 60 * 1000
+                });
+
                 res.json({
-                    token
+                    msg: "Loged In successfully!"
                 });
             } else {
                 res.status(401).json({
