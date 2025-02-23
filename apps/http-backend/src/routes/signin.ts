@@ -9,7 +9,6 @@ dotenv.config();
 
 export async function signin(req: Request, res: Response) {
     const parsedData = SignInSchema.safeParse(req.body);
-    console.log(parsedData)
 
     if (!parsedData.success) {
         res.status(400).json({
@@ -31,8 +30,6 @@ export async function signin(req: Request, res: Response) {
             });
             return;
         }
-        console.log(user.password)
-        console.log(parsedData.data.password)
 
         if (parsedData.data?.password && user?.password) {
             const userPassword = await bcrypt.compare(parsedData.data.password, user.password);
@@ -52,6 +49,8 @@ export async function signin(req: Request, res: Response) {
                     sameSite: true,
                     maxAge: 24 * 60 * 60 * 1000
                 });
+
+                console.log(res.getHeaders());
 
                 res.json({
                     msg: "Loged In successfully!"
