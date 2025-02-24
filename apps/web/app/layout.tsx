@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
+import ReactQueryProvider from "@components/ReactQueryProvider";
 
-const montserrat =  Montserrat({ subsets: ["latin"], weight: ["400", "700"] });
+const montserrat = Montserrat({ subsets: ["latin"], weight: ["400", "700"] });
 
 export const metadata: Metadata = {
   title: "WireSketch",
@@ -21,7 +22,9 @@ export default function RootLayout({
         <link rel="icon" href="/wiresketchLogo.png" type="image/png" />
       </head>
       <body className={montserrat.className}><meta property="og:image" content="@public/wiresketchLogo.png" /><meta property="og:image" content="@public/wiresketchLogo.png" />
-        {children}
+        <ReactQueryProvider>
+          {children}
+        </ReactQueryProvider>
       </body>
     </html>
   );
