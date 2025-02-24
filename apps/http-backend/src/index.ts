@@ -8,6 +8,7 @@ import { room } from "./routes/room";
 import passport from "passport";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import cors from "cors"
 import "./passport-config";
 
 dotenv.config();
@@ -17,6 +18,12 @@ const router = Router();
 app.use(express.json());
 app.use(cookieParser());
 app.use(passport.initialize());
+app.use(cors({
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-type"]
+}))
 
 router.post("/signup", signup);
 router.post("/signin", signin);
