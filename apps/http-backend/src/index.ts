@@ -1,14 +1,14 @@
 import { Router } from "express";
 import express from "express";
 import { signup } from "./routes/signup";
-import { signin } from "./routes/signin";
+import { login } from "./routes/login";
 import { createRoom } from "./routes/createRoom";
 import authMiddleware from "./middlewares/authMiddleware";
 import { room } from "./routes/room";
 import passport from "passport";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
-import cors from "cors"
+import cors from "cors";
 import "./passport-config";
 
 dotenv.config();
@@ -23,10 +23,10 @@ app.use(cors({
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-type"]
-}))
+}));
 
 router.post("/signup", signup);
-router.post("/signin", signin);
+router.post("/login", login);
 router.post("/create-room", authMiddleware, createRoom);
 router.get("/room/:roomId", room);
 

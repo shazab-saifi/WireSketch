@@ -13,6 +13,7 @@ const page = () => {
                     <h2 className='text-[#859F3D] text-2xl font-bold'>WireSketch</h2>
                 </div>
                 <InputForm authRoute='signup' />
+                <div className='text-white text-[12px]'>Already have an account ? <span className='underline text-[#859F3D]'>Log In</span></div>
                 <div className='flex items-center justify-center space-x-4'>
                     <hr className='text-[#4d4c4c] w-[80px]' />
                     <span className='text-[#4d4c4c] font-medium'>or</span>

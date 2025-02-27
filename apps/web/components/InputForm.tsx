@@ -5,7 +5,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import Button from "./Button";
 import Input from "./Input";
-import { signUpSchema } from "@lib/credentialsSchema";
+import { logInSchema, signUpSchema } from "@lib/credentialsSchema";
 
 const InputForm = ({ authRoute }: { authRoute: string }) => {
     const router = useRouter();
@@ -14,26 +14,25 @@ const InputForm = ({ authRoute }: { authRoute: string }) => {
     const [nameValue, setNameValue] = useState("");
     const [errors, setErrors] = useState<{ [key: string]: string | undefined }>({});
 
-    console.log(errors);
-
     const credentials: { email: string; name?: string; password: string } = {
         email: emailValue,
         password: passwordValue,
-        ...(authRoute === "signup" && { password: passwordValue })
+        ...(authRoute === "signup" && { name: nameValue })
     };
 
-    const signUp = async ({ email, password, name }: { email: string; password: string; name: string }) => {
+    const auth = async ({ email, password, name }: { email: string; password: string; name?: string }) => {
         const res = await fetch(`http://localhost:4000/${authRoute}`, {
             method: "POST",
             body: JSON.stringify({ email, password, name }),
-            headers: { "Content-Type": "application/json" }
+            headers: { "Content-Type": "application/json" },
+            credentials: "include"
         });
 
         return res.json();
     };
 
     const mutation = useMutation({
-        mutationFn: signUp,
+        mutationFn: auth,
         onSuccess: () => {
             router.push("/");
         },
@@ -43,11 +42,9 @@ const InputForm = ({ authRoute }: { authRoute: string }) => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
-        const result = signUpSchema.safeParse(credentials);
+        const result = authRoute === "signup" ? signUpSchema.safeParse(credentials) : logInSchema.safeParse(credentials);
 
         if (!result.success) {
-            console.log(result.error);
-
             const formattedErrors: { [key: string]: string | undefined } = {};
             result.error.issues.forEach((issue) => {
                 formattedErrors[issue.path[0]!] = issue.message;
@@ -74,29 +71,33 @@ const InputForm = ({ authRoute }: { authRoute: string }) => {
                     {errors.email && <span className="text-red-600 md:text-sm text-[12px] text-left">{errors.email}</span>}
                 </div>
                 <div className="flex flex-col space-y-1">
-                    <Input
-                        type="text"
-                        placeholder="Name"
-                        value={nameValue}
-                        onChange={(e) => setNameValue(e.target.value)}
-                    />
-                    {errors.name && <span className="text-red-600 md:text-sm text-[12px] text-left">{errors.name}</span>}
-                </div>
-                <div className="flex flex-col space-y-1">
                     {authRoute === "signup" && (
                         <>
                             <Input
-                                type="password"
-                                placeholder="Password"
-                                value={passwordValue}
-                                onChange={(e) => setPasswordValue(e.target.value)}
+                                type="text"
+                                placeholder="Name"
+                                value={nameValue}
+                                onChange={(e) => setNameValue(e.target.value)}
                             />
-                            {errors.password && <span className="text-red-600 md:text-sm text-[12px] text-left">{errors.password}</span>}
+                            {errors.name && <span className="text-red-600 md:text-sm text-[12px] text-left">{errors.name}</span>}
                         </>
                     )}
                 </div>
+                <div className="flex flex-col space-y-1">
+                    <Input
+                        type="password"
+                        placeholder="Password"
+                        value={passwordValue}
+                        onChange={(e) => setPasswordValue(e.target.value)}
+                    />
+                    {errors.password && <span className="text-red-600 md:text-sm text-[12px] text-left">{errors.password}</span>}
+                </div>
             </div>
-            <Button text="Sign Up" className="w-full flex justify-center" onClick={handleSubmit} />
+            <Button
+                text={authRoute === "signup" ? "Sign Up" : "Log In"}
+                className="w-full flex justify-center"
+                onClick={handleSubmit}
+            />
         </div>
     );
 };

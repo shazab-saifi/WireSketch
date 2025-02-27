@@ -7,7 +7,7 @@ import * as dotenv from "dotenv";
 
 dotenv.config();
 
-export async function signin(req: Request, res: Response) {
+export async function login(req: Request, res: Response) {
     const parsedData = SignInSchema.safeParse(req.body);
 
     if (!parsedData.success) {

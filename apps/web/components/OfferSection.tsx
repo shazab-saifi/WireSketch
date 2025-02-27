@@ -10,7 +10,7 @@ import { scrollVariants } from "@lib/MotionVarients"
 
 const OfferSection = () => {
     return (
-        <div className=" text-white text-center mt-16 px-4 lg:px-20 flex justify-evenly">
+        <div className=" text-white text-center mt-16 px-4 lg:px-20 flex xl:justify-evenly justify-center">
             <motion.div
                 variants={scrollVariants.variant1}
                 initial="hidden"
@@ -54,7 +54,7 @@ const OfferSection = () => {
                     for yourself and get your ideas out there.
                 </motion.p>
                 <motion.div
-                    className="space-x-4 mt-5"
+                    className="space-x-4 flex mt-5"
                     variants={scrollVariants.variant4}
                     initial="hidden"
                     whileInView="visible"
