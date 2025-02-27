@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 import Button from "./Button";
 import Input from "./Input";
 import { logInSchema, signUpSchema } from "@lib/credentialsSchema";
+import Image from "next/image";
+import google from "@public/google.svg"
 
 const InputForm = ({ authRoute }: { authRoute: string }) => {
     const router = useRouter();
@@ -97,6 +99,17 @@ const InputForm = ({ authRoute }: { authRoute: string }) => {
                 text={authRoute === "signup" ? "Sign Up" : "Log In"}
                 className="w-full flex justify-center"
                 onClick={handleSubmit}
+            />
+            <div className='flex items-center justify-center space-x-4'>
+                <hr className='text-[#4d4c4c] w-[80px]' />
+                <span className='text-[#4d4c4c] font-medium'>or</span>
+                <hr className='text-[#4d4c4c] w-[80px]' />
+            </div>
+            <Button
+                text='Sing In with Google'
+                icon={<Image src={google} width={24} alt='google' />}
+                onClick={() => router.push("http://localhost:4000/auth/google")}
+                className='w-full text-black bg-white items-center justify-evenly'
             />
         </div>
     );

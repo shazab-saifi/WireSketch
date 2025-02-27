@@ -14,7 +14,7 @@ model User {
   name     String
   photo    String?
   googleId String? @unique
-  authtype String  @default("credentails")
+  authtype String  @default("credentials")
   chats    Chat[]
   rooms    Room[]
 }
