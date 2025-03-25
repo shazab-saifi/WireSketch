@@ -15,10 +15,9 @@
     "@tanstack/react-query-devtools": "^5.66.9",
     "axios": "^1.7.9",
     "motion": "^12.4.5",
-    "next": "^15.1.0",
+    "next": "^15.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "recoil": "^0.7.7",
     "roughjs": "^4.6.6",
     "zod": "^3.24.1"
   },

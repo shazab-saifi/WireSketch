@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import ReactQueryProvider from "@components/ReactQueryProvider";
-import { RecoilRoot } from "recoil";
 
 const montserrat = Montserrat({ subsets: ["latin"], weight: ["400", "700"] });
 
@@ -24,9 +23,7 @@ export default function RootLayout({
       </head>
       <body className={montserrat.className}><meta property="og:image" content="@public/wiresketchLogo.png" /><meta property="og:image" content="@public/wiresketchLogo.png" />
         <ReactQueryProvider>
-          <RecoilRoot>
-            {children}
-          </RecoilRoot>
+          {children}
         </ReactQueryProvider>
       </body>
     </html>
