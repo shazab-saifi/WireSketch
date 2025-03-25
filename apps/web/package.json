@@ -18,10 +18,12 @@
     "next": "^15.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "recoil": "^0.7.7",
     "roughjs": "^4.6.6",
     "zod": "^3.24.1"
   },
   "devDependencies": {
+    "@iconify/react": "^5.2.0",
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@tailwindcss/postcss": "^4.0.3",
