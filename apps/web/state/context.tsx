@@ -10,7 +10,7 @@ export const Context = createContext<ToolContextType>({
     setTool: () => {}
 });
 
-export const StatePrivoder = ({children}: {children: ReactNode}) => {
+export const StateProvider = ({children}: {children: ReactNode}) => {
     const [tool, setTool] = useState('');
 
     return (
