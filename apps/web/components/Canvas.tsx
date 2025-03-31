@@ -13,8 +13,8 @@ function Canvas({ children }: { children: ReactNode }) {
   const [startX, setStartX] = useState(0);
   const [startY, setStartY] = useState(0);
   const [pencilPoints, setPencilPoints] = useState<{ x: number; y: number }[]>([]);
-  const { tool } = useContext(Context);
-
+  const { tool, isLock } = useContext(Context);
+  
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -54,11 +54,14 @@ function Canvas({ children }: { children: ReactNode }) {
     const canvas = canvasRef.current;
 
     const handleMouseDown = (e: MouseEvent) => {
-      if (!canvas) return;
+      if (!canvas || !canvasRef.current) return;
 
       const rect = canvas.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
+
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
 
       setStartX(x);
       setStartY(y);
@@ -67,6 +70,8 @@ function Canvas({ children }: { children: ReactNode }) {
 
       if (tool === "pencil") {
         setPencilPoints([{ x, y }]);
+      } if (tool === "gallery") {
+        
       }
     };
 
@@ -113,11 +118,13 @@ function Canvas({ children }: { children: ReactNode }) {
               rc.line(
                 prevPoint.x, prevPoint.y,
                 currentPoint.x, currentPoint.y,
-                { stroke: "white", roughness: 1.5 }
+                { stroke: "white", roughness: 1.5, strokeWidth: 2 }
               );
             }
           }
           break;
+        default:
+          console.warn(`Unknown tool: ${tool}`);
       }
     };
 
@@ -159,7 +166,7 @@ function Canvas({ children }: { children: ReactNode }) {
               rc.line(
                 prevPoint.x, prevPoint.y,
                 currentPoint.x, currentPoint.y,
-                { stroke: "white", roughness: 1.5 }
+                { stroke: "white", roughness: 1.5, strokeWidth: 2 }
               );
             }
           }
@@ -177,14 +184,15 @@ function Canvas({ children }: { children: ReactNode }) {
       document.body.style.cursor = "default";
     };
 
-    window.addEventListener("mousedown", handleMouseDown);
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("mouseup", handleMouseUp);
+    canvasRef.current.addEventListener("mousedown", handleMouseDown);
+    canvasRef.current.addEventListener("mousemove", handleMouseMove);
+    canvasRef.current.addEventListener("mouseup", handleMouseUp);
 
     return () => {
-      window.removeEventListener("mousedown", handleMouseDown);
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseup", handleMouseUp);
+      if (!canvasRef.current) return;
+      canvasRef.current.removeEventListener("mousedown", handleMouseDown);
+      canvasRef.current.removeEventListener("mousemove", handleMouseMove);
+      canvasRef.current.removeEventListener("mouseup", handleMouseUp);
     };
   }, [isClient, isDrawing, startX, startY, tool, pencilPoints]);
 
@@ -208,7 +216,7 @@ function Canvas({ children }: { children: ReactNode }) {
 
   return (
     <div className="relative w-full h-full">
-      <canvas ref={canvasRef} className="w-full h-full bg-[#1A1A19]" />
+      <canvas id="canvas" ref={canvasRef} className={`w-full h-full bg-[#1A1A19] ${isLock ? "pointer-events-none" : ""}`} />
       {children}
     </div>
   );
